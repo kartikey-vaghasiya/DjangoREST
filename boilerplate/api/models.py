@@ -1,9 +1,12 @@
-from django.db import models
 from django.contrib.auth.models import User, Group
+from djongo import models
+from djongo.models import ObjectIdField
+from bson import ObjectId
+
 
 class Product(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
+    _id = ObjectIdField(primary_key=True, default=ObjectId)
+    name = models.CharField(max_length=25)
     desc = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField()
